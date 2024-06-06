@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div class="container">
+  <h1>VOLCANOLOGY</h1>
+    <h2>Sign Up</h2>
+    <form id="signup-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        
+        <label for="username">Preferred Username:</label>
+        <input type="text" id="username" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" required>
+        
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        
+        <button type="submit">Sign Up</button>
+    </form>
+    
+    <div class="login">
+        <a href="#" id="login-link">Log In</a>
+    </div>
+</div>
+<style>
+body {
+    background-image: url('te ka bg.jpg');
+            background-size: cover;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+h1 { 
+  text-align: center;
+  color:red; 
+  font-family: Cursive;
+}
+h2 {
+    text-align: center;
+    color: gray;
+}
+
+form {
+    margin-top: 20px;
+    color: gray;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: red;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login a {
+    color: #007bff;
+    text-decoration: none;
+}
+</style>
+<script src="script.js"></script>
+<script>
+const signupForm = document.getElementById('signup-form');
+const loginLink = document.getElementById('login-link');
+
+signupForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const email = document.getElementById('email').value;
+    
+    // Validate password match
+    if (password !== confirmPassword) {
+        alert('Passwords do not match. Please try again.');
+        return;
+    }
+    
+    // Save user information in local storage
+    const user = {
+        name: name,
+        username: username,
+        password: password,
+        email: email
+    };
+    localStorage.setItem('user', JSON.stringify(user));
+    
+    alert('Sign up successful! You can now log in.');
+});
+
+loginLink.addEventListener('click', function(event) {
+    event.preventDefault();
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    
+    if (user) {
+        // Redirect to another website for login
+        window.location.href = 'Second.html';
+    } else {
+        alert('Please sign up first.');
+    }
+});
+
+</script>
+</body>
+</html>
